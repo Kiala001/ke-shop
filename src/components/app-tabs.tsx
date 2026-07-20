@@ -3,30 +3,100 @@ import { useColorScheme } from 'react-native';
 
 import { Colors } from '@/constants/theme';
 
+
 export default function AppTabs() {
+
   const scheme = useColorScheme();
-  const colors = Colors[scheme === 'unspecified' ? 'light' : scheme];
+
+  const colors =
+    Colors[scheme === 'unspecified' ? 'light' : scheme];
+
 
   return (
+
     <NativeTabs
+
       backgroundColor={colors.background}
+
       indicatorColor={colors.backgroundElement}
-      labelStyle={{ selected: { color: colors.text } }}>
+
+      labelStyle={{
+        selected: {
+          color: colors.text
+        }
+      }}
+
+    >
+
+
+      {/* Dashboard */}
+
       <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+
+        <NativeTabs.Trigger.Label>
+          Home
+        </NativeTabs.Trigger.Label>
+
+
         <NativeTabs.Trigger.Icon
+
           src={require('@/assets/images/tabIcons/home.png')}
+
           renderingMode="template"
+
         />
+
+
       </NativeTabs.Trigger>
 
-      <NativeTabs.Trigger name="explore">
-        <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
+
+
+
+
+      {/* Produtos */}
+
+      <NativeTabs.Trigger name="products">
+
+
+        <NativeTabs.Trigger.Label>
+          Produtos
+        </NativeTabs.Trigger.Label>
+
+
         <NativeTabs.Trigger.Icon
-          src={require('@/assets/images/tabIcons/explore.png')}
+
+          src={require('@/assets/images/tabIcons/products.png')}
+
           renderingMode="template"
+
         />
+
+
       </NativeTabs.Trigger>
+
+
+      {/* Explorar */}
+
+      <NativeTabs.Trigger name="explore">
+
+
+        <NativeTabs.Trigger.Label>
+          Explorar
+        </NativeTabs.Trigger.Label>
+
+
+        <NativeTabs.Trigger.Icon
+
+          src={require('@/assets/images/tabIcons/explore.png')}
+
+          renderingMode="template"
+
+        />
+
+      </NativeTabs.Trigger>
+
     </NativeTabs>
+
   );
+
 }
