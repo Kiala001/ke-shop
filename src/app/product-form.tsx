@@ -274,10 +274,14 @@ export default function ProductFormScreen() {
 
     <>
 
-
+      
       <Stack.Screen
 
         options={{
+
+          headerStyle: {
+            backgroundColor: colors.primary,
+          },
 
           title:
 
@@ -450,7 +454,7 @@ const styles = StyleSheet.create({
 
     flex:1,
 
-    backgroundColor:colors.background,
+    backgroundColor: colors.background,
 
   },
 

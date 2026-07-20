@@ -441,137 +441,61 @@ export default function OrdersScreen() {
 
                         </Text>
 
-
-
-
-
-
                         <Text style={styles.product}>
-
-
                             {item.quantidade > 1
-
                                 ? `${item.quantidade}x `
-
                                 : ''}
-
-
-
                             {item.produtoNome}
-
-
-
                             {item.nota
-
                                 ? ` · ${item.nota}`
-
                                 : ''}
-
-
-
                         </Text>
 
-
-
-
-
-
-
                         <View style={styles.cardBottom}>
-
-
                             <Text style={styles.schedule}>
-
-
                                 {item.dia || 'Sem dia definido'}
-
-
-
                                 {item.hora
-
                                     ? ` · ${item.hora}`
-
                                     : ' · sem horário'}
-
-
-
                             </Text>
 
-
-
-
-
                             <TouchableOpacity
-
-
-                                onPress={() => toggleEntregue(item)}
-
-
+                                onPress={() => {
+                                    if (item.estado === 'entregue') {
+                                        router.push({
+                                            pathname: '/financas/divisao/[orderId]',
+                                            params: {
+                                                orderId: item.id,
+                                            },
+                                        });
+                                    } else {
+                                        toggleEntregue(item);
+                                    }
+                                }}
                                 style={[
-
                                     styles.checkButton,
-
-
-                                    item.estado === 'entregue'
-
-                                    && {
-
-                                        backgroundColor:
-                                            colors.entregue
-
-                                    }
-
+                                    item.estado === 'entregue' && {
+                                        backgroundColor: colors.success,
+                                    },
                                 ]}
-
-
                             >
-
-
                                 <Ionicons
-
-
                                     name={
-
                                         item.estado === 'entregue'
-
-                                            ? 'checkmark'
-
+                                            ? 'cash'
                                             : 'checkmark-outline'
-
                                     }
-
-
                                     size={16}
-
-
                                     color={
-
                                         item.estado === 'entregue'
-
                                             ? colors.white
-
                                             : colors.textMuted
-
                                     }
-
-
                                 />
-
-
                             </TouchableOpacity>
-
-
-
                         </View>
-
-
-
                     </TouchableOpacity>
-
-
                 )}
-
-
             />
 
 

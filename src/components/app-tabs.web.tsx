@@ -33,47 +33,28 @@ export default function AppTabs() {
           flex: 1
         }}
       />
-
-
       <TabList asChild>
-
         <CustomTabList>
-
 
           <TabTrigger
             name="index"
             href="/"
             asChild
           >
-
             <TabButton icon="home">
-
               Home
-
             </TabButton>
-
-
           </TabTrigger>
-
-
-
-
 
           <TabTrigger
             name="product"
             href="/products"
             asChild
           >
-
             <TabButton icon="cube">
-
               Produtos
-
             </TabButton>
-
-
           </TabTrigger>
-
 
           <TabTrigger
             name="orders"
@@ -85,23 +66,23 @@ export default function AppTabs() {
             </TabButton>
           </TabTrigger>
 
+          <TabTrigger
+            name="finance"
+            href="/finance"
+            asChild
+          >
+            <TabButton icon="wallet">
+              Finanças
+            </TabButton>
+          </TabTrigger>
 
         </CustomTabList>
-
-
       </TabList>
-
-
     </Tabs>
 
   );
 
 }
-
-
-
-
-
 
 
 function TabButton({

@@ -6,6 +6,7 @@ import { generateId } from './id';
 
 const PRODUCTS_KEY = '@keshop_products';
 const ORDERS_KEY = '@keshop_orders';
+const FINANCE_KEY = '@keshop_finance';
 
 // ---------- Helpers genéricos ----------
 
@@ -26,6 +27,16 @@ async function writeJSON(key, value) {
   } catch (e) {
     console.warn('Erro a gravar', key, e);
     return false;
+  }
+}
+
+async function readObject(key, fallback) {
+  try {
+    const raw = await AsyncStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch (e) {
+    console.warn('Erro a ler', key, e);
+    return fallback;
   }
 }
 
@@ -170,6 +181,111 @@ export async function deleteOrder(id) {
 
 export async function setOrderStatus(id, novoEstado) {
   return updateOrder(id, { estado: novoEstado });
+}
+
+// ---------- Divisão de valores por encomenda ----------
+// order.divisao = { valorRecebido, custoProduto, taxi, desconto, descontoObs, lucro, criadoEm, atualizadoEm }
+
+export async function getDivisao(orderId) {
+  const orders = await getOrders();
+  const order = orders.find((o) => o.id === orderId);
+  return order?.divisao || null;
+}
+
+export async function saveDivisao(orderId, dados) {
+  const orders = await getOrders();
+  const current = orders.find((o) => o.id === orderId);
+  if (!current) return null;
+
+  const valorRecebido = Number(dados.valorRecebido) || 0;
+  const custoProduto = Number(dados.custoProduto) || 0;
+  const taxi = Number(dados.taxi) || 0;
+  const desconto = Number(dados.desconto) || 0;
+  const lucro = valorRecebido - custoProduto - taxi - desconto;
+
+  const divisao = {
+    valorRecebido,
+    custoProduto,
+    taxi,
+    desconto,
+    descontoObs: dados.descontoObs?.trim() || '',
+    lucro,
+    criadoEm: current.divisao?.criadoEm || new Date().toISOString(),
+    atualizadoEm: new Date().toISOString(),
+  };
+
+  const updatedOrders = orders.map((o) => (o.id === orderId ? { ...o, divisao } : o));
+  await saveOrders(updatedOrders);
+  return divisao;
+}
+
+export async function deleteDivisao(orderId) {
+  const orders = await getOrders();
+  const updatedOrders = orders.map((o) => {
+    if (o.id !== orderId) return o;
+    const { divisao, ...resto } = o;
+    return resto;
+  });
+  await saveOrders(updatedOrders);
+}
+
+// ---------- Configurações financeiras (investimento) ----------
+
+export async function getFinanceSettings() {
+  return readObject(FINANCE_KEY, { investimento: 0 });
+}
+
+export async function setInvestimento(valor) {
+  const settings = await getFinanceSettings();
+  const updated = { ...settings, investimento: Number(valor) || 0 };
+  await writeJSON(FINANCE_KEY, updated);
+  return updated;
+}
+
+// ---------- Estatísticas de Finanças ----------
+
+export async function getFinanceStats() {
+  const [orders, products, settings] = await Promise.all([
+    getOrders(),
+    getProducts(),
+    getFinanceSettings(),
+  ]);
+
+  const registos = orders
+    .filter((o) => !!o.divisao)
+    .map((o) => ({
+      orderId: o.id,
+      produtoNome: o.produtoNome,
+      telefone: o.telefone,
+      quantidade: o.quantidade,
+      ...o.divisao,
+    }))
+    .sort((a, b) => new Date(b.atualizadoEm) - new Date(a.atualizadoEm));
+
+  const totais = registos.reduce(
+    (acc, r) => {
+      acc.valorRecebido += r.valorRecebido;
+      acc.custoProduto += r.custoProduto;
+      acc.taxi += r.taxi;
+      acc.desconto += r.desconto;
+      acc.lucro += r.lucro;
+      return acc;
+    },
+    { valorRecebido: 0, custoProduto: 0, taxi: 0, desconto: 0, lucro: 0 }
+  );
+
+  const valorEstoque = products.reduce((acc, p) => acc + (p.preco || 0) * (p.estoque || 0), 0);
+  const unidadesEstoque = products.reduce((acc, p) => acc + (p.estoque || 0), 0);
+
+  return {
+    investimento: settings.investimento || 0,
+    lucroTotal: totais.lucro,
+    saldo: totais.lucro - (settings.investimento || 0),
+    totais,
+    valorEstoque,
+    unidadesEstoque,
+    registos,
+  };
 }
 
 // ---------- Estatísticas / Dashboard ----------
