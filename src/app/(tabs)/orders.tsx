@@ -264,49 +264,40 @@ export default function OrdersScreen() {
 
             </View>
 
-
-
-
-
-
-
             <FlatList
-
 
                 horizontal
 
-
                 showsHorizontalScrollIndicator={false}
-
 
                 data={FILTERS}
 
-
-                keyExtractor={
-                    item => item.key
-                }
+                keyExtractor={(item) => item.key}
 
 
                 contentContainerStyle={{
                     paddingHorizontal: 20,
-                    paddingVertical: 5,
-                    gap: 8
-
+                    paddingVertical: 10,
+                    gap: 6,
                 }}
 
+
+                style={{
+                    maxHeight: 55,
+                }}
 
 
                 renderItem={({ item }) => {
 
 
-                    const active =
-                        filter === item.key;
-
+                    const active = filter === item.key;
 
 
                     return (
 
                         <TouchableOpacity
+
+                            activeOpacity={0.7}
 
                             onPress={() => setFilter(item.key)}
 
@@ -335,9 +326,7 @@ export default function OrdersScreen() {
 
                     );
 
-
                 }}
-
 
             />
 
@@ -658,11 +647,11 @@ const styles = StyleSheet.create({
 
     chip: {
 
-        paddingHorizontal: 14,
+        height: 30,
 
-        paddingVertical: 8,
+        paddingHorizontal: 12,
 
-        borderRadius: 20,
+        borderRadius: 15,
 
         backgroundColor: colors.card,
 
@@ -670,7 +659,9 @@ const styles = StyleSheet.create({
 
         borderColor: colors.border,
 
-        height: 32,
+        justifyContent: 'center',
+
+        alignItems: 'center',
 
     },
 
