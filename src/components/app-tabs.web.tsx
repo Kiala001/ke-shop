@@ -120,7 +120,7 @@ function TabButton({
 
         name={icon}
 
-        size={22}
+        size={20}
 
         color={
           isFocused
@@ -221,59 +221,41 @@ const styles = StyleSheet.create({
 
 
   menu: {
-
     flexDirection: 'row',
-
     alignItems: 'center',
-
     backgroundColor: colors.card,
 
-    paddingHorizontal: 10,
+    paddingHorizontal: 6,
+    paddingVertical: 6,
 
-    paddingVertical: 10,
-
-    borderRadius: 40,
-
-
-    shadowColor: colors.black,
-
-    shadowOpacity: 0.12,
-
-    shadowRadius: 12,
-
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-
-
-    elevation: 8,
+    borderRadius: 34,
 
     borderWidth: 1,
-
     borderColor: colors.border,
 
+    shadowColor: colors.black,
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    shadowOffset: {
+        width: 0,
+        height: 6,
+    },
+    elevation: 8,
   },
-
 
 
 
 
   tabButton: {
-
     flexDirection: 'row',
-
     alignItems: 'center',
 
-    paddingHorizontal: 18,
+    paddingHorizontal: 12,
+    paddingVertical: 9,
 
-    paddingVertical: 11,
-
-    borderRadius: 30,
-
-    gap: 7,
-
-  },
+    borderRadius: 26,
+    gap: 2,
+},
 
 
 
@@ -290,11 +272,8 @@ const styles = StyleSheet.create({
 
 
   label: {
-
-    fontSize: 13,
-
+    fontSize: 12,
     color: colors.textMuted,
-
   },
 
 

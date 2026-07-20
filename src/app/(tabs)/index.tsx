@@ -78,11 +78,8 @@ export default function DashboardScreen() {
 
 
   return (
-
     <ScrollView
-
       style={styles.screen}
-
       contentContainerStyle={{
         paddingBottom: 40
       }}
@@ -95,7 +92,7 @@ export default function DashboardScreen() {
       }
 
     >
-
+      <Text style={styles.pageTitle}>KE SHOP</Text>
 
       <LinearGradient
 
@@ -180,44 +177,22 @@ export default function DashboardScreen() {
 
 
       </View>
-
-
-
-
-
+{/* 
       <View style={styles.card}>
-
-
         <Text style={styles.cardTitle}>
           Ticket médio
         </Text>
-
-
         <Text style={styles.bigNumber}>
           {formatKz(ticketMedio)}
         </Text>
-
-
-      </View>
-
-
-
-
-
-
+      </View> */}
 
       <View style={styles.card}>
-
-
         <Text style={styles.cardTitle}>
           Últimas entregas
         </Text>
-
-
-
         {
           ultimasEntregas.length === 0 ? (
-
             <Text style={styles.emptyText}>
               Sem entregas registadas.
             </Text>
@@ -428,6 +403,13 @@ const styles = StyleSheet.create({
     fontSize: 12
   },
 
+  pageTitle: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: colors.textDark,
+    marginTop: 16,
+    marginHorizontal: 16,
+  },
 
   card: {
     backgroundColor: colors.card,

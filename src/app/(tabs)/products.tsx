@@ -28,13 +28,13 @@ export default function ProductsScreen() {
 
 
 
-  const load = useCallback(async()=>{
+  const load = useCallback(async () => {
 
     const data = await getProducts();
 
     setProducts(data);
 
-  },[]);
+  }, []);
 
 
 
@@ -42,11 +42,11 @@ export default function ProductsScreen() {
 
   useFocusEffect(
 
-    useCallback(()=>{
+    useCallback(() => {
 
       load();
 
-    },[load])
+    }, [load])
 
   );
 
@@ -55,16 +55,16 @@ export default function ProductsScreen() {
 
 
 
-  const filtered = products.filter((p)=>
+  const filtered = products.filter((p) =>
 
 
     `${p.nome} ${p.categoria}`
 
-    .toLowerCase()
+      .toLowerCase()
 
-    .includes(
-      search.toLowerCase()
-    )
+      .includes(
+        search.toLowerCase()
+      )
 
   );
 
@@ -163,14 +163,14 @@ export default function ProductsScreen() {
         data={filtered}
 
 
-        keyExtractor={(item)=>item.id}
+        keyExtractor={(item) => item.id}
 
 
 
         contentContainerStyle={{
-          padding:16,
-          paddingTop:4,
-          paddingBottom:32
+          padding: 16,
+          paddingTop: 4,
+          paddingBottom: 32
         }}
 
 
@@ -187,26 +187,26 @@ export default function ProductsScreen() {
 
 
 
-        renderItem={({item})=>(
+        renderItem={({ item }) => (
 
           <TouchableOpacity
 
             style={styles.card}
 
-            onPress={()=>
+            onPress={() =>
               router.push({
 
-                pathname:'/product-form',
+                pathname: '/product-form',
 
-                params:{
-                  productId:item.id
+                params: {
+                  productId: item.id
                 }
 
               })
 
             }>
 
-            <View style={{flex:1}}>
+            <View style={{ flex: 1 }}>
 
 
               <Text style={styles.productName}>
@@ -223,8 +223,8 @@ export default function ProductsScreen() {
 
                 {
                   item.ml
-                  ? ` · ${item.ml}ml`
-                  : ''
+                    ? ` · ${item.ml}ml`
+                    : ''
                 }
 
 
@@ -234,12 +234,9 @@ export default function ProductsScreen() {
             </View>
 
 
-
-
-
             <View
               style={{
-                alignItems:'flex-end'
+                alignItems: 'flex-end'
               }}
             >
 
@@ -248,7 +245,7 @@ export default function ProductsScreen() {
 
                 {
                   Math.round(item.preco)
-                  .toLocaleString('pt-PT')
+                    .toLocaleString('pt-PT')
                 }
 
                 {' '}Kz
@@ -264,11 +261,11 @@ export default function ProductsScreen() {
 
                   {
                     color:
-                    item.estoque <=3
+                      item.estoque <= 3
 
-                    ? colors.danger
+                        ? colors.danger
 
-                    : colors.textMuted
+                        : colors.textMuted
 
                   }
 
@@ -294,7 +291,6 @@ export default function ProductsScreen() {
 
       />
 
-
     </View>
 
   );
@@ -304,187 +300,190 @@ export default function ProductsScreen() {
 
 
 
-
-
-
-
-
 const styles = StyleSheet.create({
 
 
-screen:{
-  flex:1,
-  backgroundColor:colors.background
-},
+  screen: {
+    flex: 1,
+    backgroundColor: colors.background
+  },
 
 
-header:{
+  header: {
 
-flexDirection:'row',
+    flexDirection: 'row',
 
-justifyContent:'space-between',
+    justifyContent: 'space-between',
 
-alignItems:'center',
+    alignItems: 'center',
 
-paddingHorizontal:20,
+    paddingHorizontal: 20,
 
-paddingTop:16
+    paddingTop: 16
 
-},
+  },
 
+  pageTitle: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: colors.textDark,
+    marginTop: 16,
+    marginHorizontal: 16,
+  },
 
-title:{
 
-fontSize:24,
+  title: {
 
-fontWeight:'800',
+    fontSize: 24,
 
-color:colors.textDark
+    fontWeight: '800',
 
-},
+    color: colors.textDark
 
+  },
 
 
-addButton:{
 
-backgroundColor:colors.primary,
+  addButton: {
 
-width:40,
+    backgroundColor: colors.primary,
 
-height:40,
+    width: 40,
 
-borderRadius:20,
+    height: 40,
 
-alignItems:'center',
+    borderRadius: 20,
 
-justifyContent:'center'
+    alignItems: 'center',
 
-},
+    justifyContent: 'center'
 
+  },
 
 
 
-searchBox:{
 
-flexDirection:'row',
+  searchBox: {
 
-alignItems:'center',
+    flexDirection: 'row',
 
-backgroundColor:colors.card,
+    alignItems: 'center',
 
-marginHorizontal:20,
+    backgroundColor: colors.card,
 
-marginTop:14,
+    marginHorizontal: 20,
 
-paddingHorizontal:14,
+    marginTop: 14,
 
-borderRadius:12,
+    paddingHorizontal: 14,
 
-borderWidth:1,
+    borderRadius: 12,
 
-borderColor:colors.border
+    borderWidth: 1,
 
-},
+    borderColor: colors.border
 
+  },
 
 
 
-searchInput:{
 
-flex:1,
+  searchInput: {
 
-paddingVertical:10,
+    flex: 1,
 
-paddingHorizontal:10,
+    paddingVertical: 10,
 
-fontSize:14,
+    paddingHorizontal: 10,
 
-color:colors.textDark
+    fontSize: 14,
 
-},
+    color: colors.textDark
 
+  },
 
 
 
-card:{
 
-backgroundColor:colors.card,
+  card: {
 
-borderRadius:16,
+    backgroundColor: colors.card,
 
-padding:16,
+    borderRadius: 16,
 
-marginBottom:12,
+    padding: 16,
 
-flexDirection:'row',
+    marginBottom: 12,
 
-justifyContent:'space-between'
+    flexDirection: 'row',
 
-},
+    justifyContent: 'space-between'
 
+  },
 
 
-productName:{
 
-fontSize:16,
+  productName: {
 
-fontWeight:'700',
+    fontSize: 16,
 
-color:colors.textDark
+    fontWeight: '700',
 
-},
+    color: colors.textDark
 
+  },
 
 
-productMeta:{
 
-fontSize:12,
+  productMeta: {
 
-color:colors.textMuted,
+    fontSize: 12,
 
-marginTop:4
+    color: colors.textMuted,
 
-},
+    marginTop: 4
 
+  },
 
 
-price:{
 
-fontSize:15,
+  price: {
 
-fontWeight:'700',
+    fontSize: 15,
 
-color:colors.primary
+    fontWeight: '700',
 
-},
+    color: colors.primary
 
+  },
 
 
-stock:{
 
-fontSize:12,
+  stock: {
 
-marginTop:4,
+    fontSize: 12,
 
-fontWeight:'600'
+    marginTop: 4,
 
-},
+    fontWeight: '600'
 
+  },
 
 
-emptyText:{
 
-textAlign:'center',
+  emptyText: {
 
-color:colors.textMuted,
+    textAlign: 'center',
 
-marginTop:40,
+    color: colors.textMuted,
 
-fontSize:14,
+    marginTop: 40,
 
-paddingHorizontal:20
+    fontSize: 14,
 
-}
+    paddingHorizontal: 20
+
+  }
 
 
 

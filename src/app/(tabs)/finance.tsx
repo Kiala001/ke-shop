@@ -142,7 +142,7 @@ export default function FinancasScreen() {
         <Text style={styles.cardTitle}>Registos de lucro</Text>
         {registos.length === 0 ? (
           <Text style={styles.emptyText}>
-            Ainda não dividiste o valor de nenhuma encomenda entregue. Abre uma encomenda
+            Ainda não se dividiu nenhuma encomenda. Deve ser o fruto de falta de encomendas. Abrir uma encomenda
             entregue no separador Encomendas para começar.
           </Text>
         ) : (
