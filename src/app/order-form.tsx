@@ -310,7 +310,7 @@ export default function OrderFormScreen() {
         >
 
             <FormField
-                label="Telefone do cliente"
+                label="Telefone do cliente *"
                 value={telefone}
                 onChangeText={setTelefone}
                 placeholder="Ex: 935283990"
@@ -318,7 +318,7 @@ export default function OrderFormScreen() {
             />
 
             <FormField
-                label="Localização"
+                label="Localização *"
                 value={localizacao}
                 onChangeText={setLocalizacao}
                 placeholder="Ex: Vila de Viana, Candando"
@@ -328,7 +328,7 @@ export default function OrderFormScreen() {
 
 
             <Text style={styles.label}>
-                Produto
+                Produto *
             </Text>
 
             <TouchableOpacity
@@ -369,7 +369,7 @@ export default function OrderFormScreen() {
 
 
             <FormField
-                label="Quantidade"
+                label="Quantidade *"
                 value={quantidade}
                 onChangeText={setQuantidade}
                 placeholder="1"
@@ -443,7 +443,7 @@ export default function OrderFormScreen() {
             </TouchableOpacity>
 
             <Text style={styles.label}>
-                Estado da encomenda
+                Estado da encomenda *
             </Text>
 
             <View style={styles.statusRow}>
@@ -480,7 +480,7 @@ export default function OrderFormScreen() {
                 })}
             </View>
 
-            <View style={{ marginTop: 12 }}>
+            <View style={{ marginTop: 12, marginBottom: 10 }}>
                 <PrimaryButton
                     title={
                         isEditing
@@ -493,7 +493,7 @@ export default function OrderFormScreen() {
             </View>
 
             {isEditing && (
-                <View style={{ marginTop: 12 }}>
+                <View style={{ marginTop: 12, marginBottom: 40 }}>
                     <PrimaryButton
                         title="Eliminar encomenda"
                         variant="danger"

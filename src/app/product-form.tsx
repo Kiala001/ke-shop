@@ -45,7 +45,7 @@ export default function ProductFormScreen() {
 
   const [preco, setPreco] = useState('');
 
-  const [categoria, setCategoria] = useState('');
+  const [categoria, setCategoria] = useState('Perfume');
 
   const [ml, setMl] = useState('');
 
@@ -138,6 +138,17 @@ export default function ProductFormScreen() {
     }
 
 
+    if(!estoque){
+
+
+      Alert.alert(
+        'Falta a quantidade',
+        'Indique a quantidade do estoque do produto.'
+      );
+
+      return;
+
+    }
 
 
 
@@ -309,7 +320,7 @@ export default function ProductFormScreen() {
 
         <FormField
 
-          label="Nome do produto"
+          label="Nome do produto *"
 
           value={nome}
 
@@ -323,7 +334,7 @@ export default function ProductFormScreen() {
 
         <FormField
 
-          label="Preço (Kz)"
+          label="Preço (Kz) *"
 
           value={preco}
 
@@ -371,7 +382,7 @@ export default function ProductFormScreen() {
 
         <FormField
 
-          label="Quantidade em estoque"
+          label="Quantidade em estoque *"
 
           value={estoque}
 

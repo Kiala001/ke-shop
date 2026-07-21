@@ -81,7 +81,8 @@ export default function DashboardScreen() {
     <ScrollView
       style={styles.screen}
       contentContainerStyle={{
-        paddingBottom: 40
+        paddingBottom: 40,
+        paddingTop: 30
       }}
 
       refreshControl={
@@ -265,41 +266,19 @@ export default function DashboardScreen() {
 
       </View>
 
-
-
-
-
-
-
-      <View style={[styles.card, {marginBottom: 40}]}>
-
-
+      <View style={[styles.card, {marginBottom: 190}]}>
         <View style={styles.cardHeaderRow}>
-
-
           <Text style={styles.cardTitle}>
             Estoque baixo
           </Text>
-
-
-
           <TouchableOpacity
             onPress={() => router.push('/products')}
           >
-
             <Text style={styles.linkText}>
               Ver produtos
             </Text>
-
-
           </TouchableOpacity>
-
-
         </View>
-
-
-
-
 
         {
           produtosEstoqueBaixo.map((p: any) => (
@@ -375,18 +354,27 @@ const styles = StyleSheet.create({
     marginLeft: 8
   },
 
-  statsRow: {
-    flexDirection: "row",
-    flexWrap: "wrap"
-  },
+statsRow: {
+  flexDirection: "row",
+  flexWrap: "wrap",
+  justifyContent: "space-between",
+  paddingHorizontal: 8,
+},
 
-  statCard: {
-    width: "46%",
-    backgroundColor: colors.card,
-    margin: 8,
-    padding: 15,
-    borderRadius: 16
-  },
+
+statCard: {
+  width: "48%",
+
+  backgroundColor: colors.card,
+
+  padding: 15,
+
+  marginBottom: 12,
+
+  borderRadius: 16,
+
+  minHeight: 90,
+},
 
   statDot: {
     width: 10,
@@ -404,7 +392,7 @@ const styles = StyleSheet.create({
   },
 
   pageTitle: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: '800',
     color: colors.textDark,
     marginTop: 16,

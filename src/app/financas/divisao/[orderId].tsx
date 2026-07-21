@@ -287,7 +287,7 @@ export default function DivisaoFormScreen() {
 
       </View>
 
-      <View style={{ marginTop: 12 }}>
+      <View style={{ marginTop: 12, marginBottom: 10 }}>
 
         <PrimaryButton
           title={
@@ -303,7 +303,7 @@ export default function DivisaoFormScreen() {
 
       {jaTemDivisao && (
 
-        <View style={{ marginTop: 12 }}>
+        <View style={{ marginTop: 12, marginBottom: 20 }}>
 
           <PrimaryButton
             title="Remover divisão"

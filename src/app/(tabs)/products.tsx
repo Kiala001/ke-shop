@@ -76,15 +76,10 @@ export default function ProductsScreen() {
 
     <View style={styles.screen}>
 
-
       <View style={styles.header}>
-
-
         <Text style={styles.title}>
           Produtos
         </Text>
-
-
 
         <Pressable
 
@@ -140,99 +135,52 @@ export default function ProductsScreen() {
           placeholderTextColor={
             colors.textMuted
           }
-
           value={search}
-
           onChangeText={setSearch}
-
         />
-
-
       </View>
 
-
-
-
-
-
-
-
       <FlatList
-
-
         data={filtered}
-
-
         keyExtractor={(item) => item.id}
-
-
-
         contentContainerStyle={{
           padding: 16,
           paddingTop: 4,
           paddingBottom: 32
         }}
 
-
-
         ListEmptyComponent={
-
           <Text style={styles.emptyText}>
-
             Nenhum produto registado ainda.
-
           </Text>
-
         }
 
-
-
         renderItem={({ item }) => (
-
           <TouchableOpacity
-
             style={styles.card}
-
             onPress={() =>
               router.push({
-
                 pathname: '/product-form',
-
                 params: {
                   productId: item.id
                 }
-
               })
-
             }>
 
             <View style={{ flex: 1 }}>
-
-
               <Text style={styles.productName}>
-
                 {item.nome}
-
               </Text>
 
-
-
               <Text style={styles.productMeta}>
-
                 {item.categoria}
-
                 {
                   item.ml
                     ? ` · ${item.ml}ml`
                     : ''
                 }
-
-
               </Text>
-
-
             </View>
-
 
             <View
               style={{
@@ -319,7 +267,7 @@ const styles = StyleSheet.create({
 
     paddingHorizontal: 20,
 
-    paddingTop: 16
+    paddingTop: 45
 
   },
 

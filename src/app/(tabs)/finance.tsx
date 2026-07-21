@@ -138,7 +138,7 @@ export default function FinancasScreen() {
         </View>
       </View>
 
-      <View style={[styles.card, { marginBottom: 80 }]}>
+      <View style={[styles.card, { marginBottom: 190 }]}>
         <Text style={styles.cardTitle}>Registos de lucro</Text>
         {registos.length === 0 ? (
           <Text style={styles.emptyText}>
@@ -178,7 +178,7 @@ export default function FinancasScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
+  screen: { flex: 1, backgroundColor: colors.background, paddingTop: 40 },
   pageTitle: {
     fontSize: 24,
     fontWeight: '800',
